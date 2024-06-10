@@ -19,5 +19,5 @@ const char *midi_note_name(uint8_t n, uint8_t *octave);
 const char *midi_cc_name(uint8_t cc);
 const char *midi_rpn_name(uint16_t rpn);
 
-float midi_note_freq(int note, float cents);
-int midi_pitch_to_note(float pitch_hz, float *cents);
+float midi_note_freq(int note, float fraction);
+int midi_pitch_to_note(float pitch_hz, float *fraction);

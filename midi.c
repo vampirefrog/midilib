@@ -168,15 +168,16 @@ const char *midi_rpn_name(uint16_t rpn) {
 	if(rpn < 5) return names[rpn];
 	return "Unknown";
 }
-float midi_note_freq(int note, float cents) {
-	return 440.0 * pow(2, (note + cents / 100 - 69) / 12.0);
+
+float midi_note_freq(int note, float fraction) {
+	return 440.0 * pow(2, (note + fraction - 69.0) / 12.0);
 }
 
-int midi_pitch_to_note(float pitch_hz, float *cents) {
+int midi_pitch_to_note(float pitch_hz, float *fraction) {
 	float f = 12 * log(pitch_hz / 220.0) / log(2.0);
 	int note = round(f);
 	if(note > 70) note = 70;
 	if(note < -57) note = -57;
-	if(cents) *cents = (f - note) * 100;
+	if(fraction) *fraction = f - note
 	return (int)note + 57;
 }
