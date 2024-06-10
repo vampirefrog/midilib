@@ -43,7 +43,7 @@ void midi_track_write_meta_event_buf(struct midi_track *track, uint32_t delta_ti
 	buffer_write(&track->buffer, buf, len);
 }
 
-void midi_track_write_meta_event(struct midi_track *track, uint32_t delta_time, uint8_t ev, uint8_t len, ...) {
+void midi_track_write_meta_event(struct midi_track *track, uint32_t delta_time, int ev, int len, ...) {
 	midi_track_write_delta_time(track, delta_time);
 	midi_track_write_cmd(track, 0xff, 1);
 	buffer_write_uint8(&track->buffer, ev);

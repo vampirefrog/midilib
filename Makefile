@@ -1,7 +1,7 @@
-AR=ar
-CC=gcc
-CFLAGS=-Wall -O2
-LDFLAGS=-lm
+AR?=ar
+CC?=gcc
+CFLAGS?=-Wall -O2
+LDFLAGS?=-lm
 
 .PHONY: all tools
 

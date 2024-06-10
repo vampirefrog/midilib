@@ -17,7 +17,7 @@ void midi_track_write_cmd(struct midi_track *track, uint8_t cmd, int noReuse);
 void midi_track_write_note_on(struct midi_track *track, uint32_t delta_time, uint8_t channel, uint8_t note, uint8_t velocity);
 void midi_track_write_note_off(struct midi_track *track, uint32_t delta_time, uint8_t channel, uint8_t note, uint8_t velocity);
 void midi_track_write_meta_event_buf(struct midi_track *track, uint32_t delta_time, uint8_t ev, uint8_t len, uint8_t *buf);
-void midi_track_write_meta_event(struct midi_track *track, uint32_t delta_time, uint8_t ev, uint8_t len, ...);
+void midi_track_write_meta_event(struct midi_track *track, uint32_t delta_time, int ev, int len, ...); // we use int instead of uint8_t because va_start throws a warning if we're not 16 bit aligned https://stackoverflow.com/questions/58300687/passing-an-object-that-undergoes-default-argument-promotion-to-va-start
 void midi_track_write_tempo(struct midi_track *track, uint32_t delta_time, uint32_t tempo);
 void midi_track_write_time_signature(struct midi_track *track, uint32_t delta_time, uint8_t numerator, uint8_t denominator, uint8_t ticksPerClick, uint8_t quarterNote32ndNotes);
 void midi_track_write_track_end(struct midi_track *track, uint32_t delta_time);
