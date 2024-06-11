@@ -13,6 +13,8 @@ struct midi_file {
 
 int midi_file_init(struct midi_file *f, int file_format, int num_tracks, int ticks_per_quarter_note);
 int midi_file_clear(struct midi_file *f);
-int midi_file_write(struct midi_file *f, int (*write_fn)(void *buf, int len, void *data_ptr), void *data_ptr);
+int midi_file_write(struct midi_file *f, int (*write_fn)(void *buf, size_t len, void *data_ptr), void *data_ptr);
 struct midi_track *midi_file_append_empty_track(struct midi_file *f);
 struct midi_track *midi_file_prepend_empty_track(struct midi_file *f);
+int midi_file_append_track(struct midi_file *f, struct midi_track *t);
+int midi_file_prepend_track(struct midi_file *f, struct midi_track *t);

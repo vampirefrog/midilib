@@ -28,7 +28,7 @@ int midi_file_clear(struct midi_file *f) {
 	return 0;
 }
 
-int midi_file_write(struct midi_file *f, int (*write_fn)(void *buf, int len, void *data_ptr), void *data_ptr) {
+int midi_file_write(struct midi_file *f, int (*write_fn)(void *buf, size_t len, void *data_ptr), void *data_ptr) {
 	uint8_t buf[4];
 #define WRITE4(a, b, c, d) { buf[0] = a; buf[1] = b; buf[2] = c; buf[3] = d; if(write_fn(buf, 4, data_ptr) != 4) return -1; }
 #define WRITE2(a, b) { buf[0] = a; buf[1] = b; if(write_fn(buf, 2, data_ptr) != 2) return -1; }
@@ -69,4 +69,21 @@ struct midi_track *midi_file_prepend_empty_track(struct midi_file *f) {
 	struct midi_track *track = &f->tracks[0];
 	midi_track_init(track);
 	return track;
+}
+
+int midi_file_append_track(struct midi_file *f, struct midi_track *t) {
+	f->num_tracks++;
+	f->tracks = realloc(f->tracks, f->num_tracks * sizeof(struct midi_track));
+	if(!f->tracks) return -1;
+	memcpy(f->tracks + f->num_tracks - 1, t, sizeof(*t));
+	return 0;
+}
+
+int midi_file_prepend_track(struct midi_file *f, struct midi_track *t) {
+	f->num_tracks++;
+	f->tracks = realloc(f->tracks, f->num_tracks * sizeof(struct midi_track));
+	if(!f->tracks) return -1;
+	memmove(f->tracks + 1, f->tracks, (f->num_tracks - 1) * sizeof(struct midi_track));
+	memcpy(f->tracks, t, sizeof(*t));
+	return 0;
 }
