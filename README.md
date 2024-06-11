@@ -9,7 +9,7 @@ MIDI utilities
 
 This library is used by:
 * [vgm2x](https://github.com/vampirefrog/vgm2x)
-* [mdxtools](https://github.com/vampirefrog/mdxtools).
+* [mdxtools](https://github.com/vampirefrog/mdxtools)
 * [fmtoy](https://github.com/vampirefrog/fmtoy)
 
 Links
