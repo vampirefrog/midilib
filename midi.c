@@ -178,6 +178,6 @@ int midi_pitch_to_note(float pitch_hz, float *fraction) {
 	int note = round(f);
 	if(note > 70) note = 70;
 	if(note < -57) note = -57;
-	if(fraction) *fraction = f - note
+	if(fraction) *fraction = f - note;
 	return (int)note + 57;
 }
