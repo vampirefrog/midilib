@@ -12,6 +12,8 @@ int midi_file_init(struct midi_file *f, int file_format, int num_tracks, int tic
 	if(num_tracks > 0) {
 		f->tracks = malloc(sizeof(struct midi_track) * num_tracks);
 		if(!f->tracks) return MIDI_ERR_OUT_OF_MEMORY;
+		for(int i = 0; i < num_tracks; i++)
+			midi_track_init(f->tracks + i);
 	}
 
 	return MIDI_SUCCESS;
@@ -48,7 +50,7 @@ int midi_file_write(struct midi_file *f, int (*write_fn)(void *buf, int len, voi
 	return 0;
 }
 
-struct midi_track *midi_file_append_track(struct midi_file *f) {
+struct midi_track *midi_file_append_empty_track(struct midi_file *f) {
 	f->num_tracks++;
 	f->tracks = realloc(f->tracks, f->num_tracks * sizeof(struct midi_track));
 	if(!f->tracks)
@@ -58,7 +60,7 @@ struct midi_track *midi_file_append_track(struct midi_file *f) {
 	return track;
 }
 
-struct midi_track *midi_file_prepend_track(struct midi_file *f) {
+struct midi_track *midi_file_prepend_empty_track(struct midi_file *f) {
 	f->num_tracks++;
 	f->tracks = realloc(f->tracks, f->num_tracks * sizeof(struct midi_track));
 	if(!f->tracks)
