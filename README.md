@@ -1,6 +1,8 @@
 MIDI utilities
 ==============
 
+[![Linux Build](https://github.com/vampirefrog/midilib/actions/workflows/linux.yml/badge.svg)](https://github.com/vampirefrog/midilib/actions/workflows/linux.yml)
+
 * MIDI File reading
 * MIDI File writing
 * Other utilities:
