@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stddef.h>
+
 #include "midi.h"
 #include "midi_track.h"
 

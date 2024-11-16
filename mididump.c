@@ -50,7 +50,9 @@ void handle_pitch_wheel_change(struct midi_reader *r, uint8_t channel, uint32_t 
 }
 
 void handle_meta_event(struct midi_reader *r, int duration, int cmd, int len, uint8_t *data) {
-	printf("%08x Meta Event 0x%02x len=%d ", duration, cmd, len);
+	char buf[256];
+	midi_meta_event_string(cmd, len, data, buf, sizeof(buf));
+	printf("%08x Meta Event 0x%02x len=%d %s ", duration, cmd, len, buf);
 	hex_dump(data, len);
 	printf("\n");
 }
