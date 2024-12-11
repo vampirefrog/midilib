@@ -1,6 +1,8 @@
 MIDI utilities
 ==============
 
+![Project status](https://img.shields.io/badge/Project%20status-Beta-blue.svg)
+
 [![Linux Build](https://github.com/vampirefrog/midilib/actions/workflows/linux.yml/badge.svg)](https://github.com/vampirefrog/midilib/actions/workflows/linux.yml)
 
 * MIDI File reading
