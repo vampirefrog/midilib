@@ -8,7 +8,7 @@ int midi_file_init(struct midi_file *f, int file_format, int num_tracks, int tic
 	f->file_format = file_format;
 	f->ticks_per_quarter_note = ticks_per_quarter_note;
 	f->num_tracks = num_tracks;
-
+	f->tracks = NULL;
 	if(num_tracks > 0) {
 		f->tracks = malloc(sizeof(struct midi_track) * num_tracks);
 		if(!f->tracks) return MIDI_ERR_OUT_OF_MEMORY;
@@ -22,7 +22,7 @@ int midi_file_init(struct midi_file *f, int file_format, int num_tracks, int tic
 int midi_file_clear(struct midi_file *f) {
 	if(f->tracks) free(f->tracks);
 	if(errno) return errno;
-	f->tracks = 0;
+	f->tracks = NULL;
 	f->num_tracks = 0;
 
 	return 0;
